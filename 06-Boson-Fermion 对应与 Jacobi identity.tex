@@ -1,0 +1,86 @@
+\newcommand{\gr}{\operatorname{gr}}
+\newcommand{\charge}{\operatorname{charge}}
+\newcommand{\energy}{\operatorname{energy}}
+本文基于“Solitons: Differential Equations, Symmetries and Infinite Dimensional Algebras”的4-5章。
+\section{Bosonic and Fermionic algebra and Fock space}
+下文讨论1+1圆柱体上自由无质量玻色子与费米子。（如果你看不懂这句话可以不管它）
+\subsection{玻色子}
+记 $x_1,\dots,x_n,\dots$ 为形式变量。Fock space 定义为
+$\mathbb{C}[x_1,\dots,x_n,\dots]$. 定义 Fock space 上的一个 grading: $\gr(x_n)=n$(物理上这个grading等于能量).
+
+Bosonic algebra: 有一组算子$a_n,a_n^{\dagger}$ 满足 $[a_n,a_m]=[a_n^{\dagger},a_m^{\dagger}]=0$,
+$[a_n,a_m^{\dagger}]=\delta_{m,n}$.
+
+Bosonic algebra在Fock space上的作用：$a_nf=x_nf,\,a_n^{\dagger}f=\partial f/\partial x_n$.
+
+一点物理：在Fock space中, 1对应真空态，$x_n$相当于一个$n$-mode的激发。
+\subsection{费米子}
+费米子的情况要复杂一些。首先写出Fermionic algebra： 由$\psi_n,\psi_n^{\dagger}(n\in\mathbb{Z}+1/2)$生成，满足交换关系$\{\psi_n,\psi_m^{\dagger}\}=\delta_{m+n，0}$. 其余皆为0.
+
+接下来定义Fock space: 想象你在一条直线上$\mathbb{Z}+1/2$的位置放置黑子和白子。满足在$n\gg 0$的位置都是黑子
+，$n\ll 0$的位置都是白子，这就构成了一组基。定义真空态为$n > 0$的位置都是黑子
+，$n < 0$的位置都是白子。上面的条件相当于与真空态之差有限个棋子。
+
+Fermionic algebra在Fock space上的作用：$\psi_n$ 把 $-n$处的白子变成黑子，如果原来是黑子就变成0.
+$\psi_n^{\dagger}$把 $n$处的黑子变成白子，如果原来是白子就变成0。这个空间记为$\mathcal{F}$。
+
+注意正负号的约定：
+原因就是每个基都是由一些
+$\psi_n,\psi_n^{\dagger}$按顺序作用在真空态上得到的。
+如果你用某一个算子作用在上面，那么就要和一些其他算子交换才能得到正确的排序。
+具体请看参考文献。
+
+在Fock space上引入两个grading：粒子数$\charge(\psi_n)=1,\,\charge(\psi_n^{\dagger})=-1$.
+能量$\energy(\psi_n)=-n,\,\energy(\psi_n^{\dagger})=-n$.对应的分次空间记为$\mathcal{F}^{(l)}_d$
+
+\section{Boson-Fermion 对应}
+\begin{theorem}
+    存在一个从Bosonic Fock space到$\mathcal{F}^{(l)}$的同构. 把能量为$n$的状态映射到能量为$n+l^2/2$的状态
+\end{theorem}
+我们可以把粒子数为$l$的状态右移$l$,这样把问题化归成$l=0$的情况。
+书中只给出了$\mathcal{F}^{(0)}$到Bosonic Fock space的映射，并证明是满射。同构是通过Jacobi identity证明的.（我一直觉得应该有不需要Jacobi identity或者Schur polynomial之类的办法）
+\subsection{$\Phi$ 和 $\Phi^{-1}$}
+首先定义 $H_n:=\sum_{j\in \mathbb{Z}+1/2}:\mathrel{\psi_{-j}\psi^{\dagger}_{j+n}}:$.由于本文中通常$n\not=0$, 因此 normal ordering 没有影响。
+
+定义$\Phi:\mathcal{F}^{(0)}\rightarrow \mathbb{C}[x_1,\dots,x_n,\dots]$如下：
+
+\[\ket{u}\mapsto\bra{0}exp(\sum_{i\ge 1}H_ix_i)\ket{u}\]
+
+我们可以算一些例子：(TBD)
+
+\begin{theorem}
+    $\Phi(H_n\ket{u})=\begin{cases}
+\frac{\partial}{\partial x_n}\Phi(\ket{u})& n>0\\
+-nx_n\Phi(\ket{u})& n<0
+\end{cases}$
+\end{theorem}
+证明就是通过交换关系。
+
+反复利用$n<0$的关系，我们可以证明$\Phi$是满射.我们可以形式化地写出
+$$\Phi^{-1}(F)=F(-H_1,-H_2/2,\dots)\ket{0}$$
+\section{Jacobi identity}
+记Fermion Fock space中粒子数为$l$,能量为$d$的子空间为
+$\mathcal{F}^{(l)}_d$,定义生成函数：
+\[
+    \operatorname{ch}(\mathcal{F})=\sum_{l\in\mathbb{Z},\,d-l^2/2\in\mathbb{Z}^{\ge 0}}\operatorname{dim}(\mathcal{F}^{(l)}_d)z^lq^d
+\]
+
+从Fermion这边,由于Fermion Fock space是由creation operator生成：
+\[
+    \operatorname{ch}(\mathcal{F})=\prod_{j\in\mathbb{Z}^{\ge 0}+1/2}(1+zq^j)(1+z^{-1}q^j)
+\]
+
+Boson这边：
+\[
+    \operatorname{dim}(\mathcal{F}^{(l)}_d)=p(d-l^2/2)
+\]
+其中$p(n)$是partition function，满足$\sum_{n\ge 0}p(n)q^n=\prod_{m\ge 1}(1-q^m)^{-1}$.
+做变量代换$d\rightarrow d-l^2/2$(书里好像有个typo)：
+\[
+    \operatorname{ch}(\mathcal{F})=\sum_{l\in\mathbb{Z}}z^lq^{l^2/2}\prod_{m\ge 1}(1-q^m)^{-1}
+\]
+再整理一下，做变量代换 $z\rightarrow -zq^{1/2}$:
+
+\[
+    \prod_{m\ge 1}(1-q^m)(1-zq^{m-1})(1-z^{-1}q^m)=\sum_{m\in\mathbb{Z}}(-z)^mq^{m(m-1)/2}
+\]

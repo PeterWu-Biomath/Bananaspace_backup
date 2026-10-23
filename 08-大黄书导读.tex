@@ -1,0 +1,184 @@
+\section{前言}
+
+Philippe Francesco, Pierre Mathieu, 和 David Sénéchal 三位学者
+所著的 Conformal Field Theory 无疑是共形场论领域入门绕不开的一本书。
+因其亮黄色封面和800余页的篇幅，被亲切地称为“大黄书”（The Yellow Pages）。
+这部巨著以其全面性而著称。
+
+然而，正如大多数物理书籍那样，对于大多数概念，这本书采取了“在使用中加强理解”的处理方式
+这些概念仿佛笼罩在薄雾之中，虽能模糊感知其轮廓，
+其精确定义却常需读者自行揣摩或从上下文拼凑——这对于初学者或
+试图严格把握细节的学习者而言，构成了不小的认知障碍。
+（毕竟像Weinberg的量子场论中，也难免出现诸如“$\left| p \right\rangle$ transforms like a momentum”之类的古神低语。）
+
+本笔记的目的，正在于此。 
+它不是对“大黄书”内容的替代或批判，
+而是一份补充性的“探照灯”。
+我们尝试聚焦于书中那些被隐晦提及但并未给出精确定义的关键概念和约定做一些解释。
+
+\section{Chapter 1-5}
+\subsection{经典意义下的对称，和诺特定理}
+
+经典意义下的对称：一个经典的物理系统由$(M,\omega,H)$给出，其中$M$是辛流形，$\omega$是辛形式，$H$是哈密顿量。
+一个连续对称是$M$上一个向量场$X$,其生成的无穷小变换保持$\omega$不变，传统意义上
+需要$[X,X_H]=0$。诺特定理告诉我们存在一个$f\in\Gamma(M)$使得$\iota_X\omega=df$ (有$H^1(M)$作为障碍，在场论语境下这个障碍不存在，这里不细讲了).
+
+为了共形对称性的需要，我们稍微拓展一点上面的定义：一个对称为李代数$\mathfrak{g}$,
+以及momentum map $\mathfrak{g}\rightarrow\Gamma(M)$ 使得这个map是到Poisson bracket的
+李代数同态。以及一个指定的元素 $h\in \mathfrak{g}$ 使得 $h$ 的像是 $H$。
+注意我们并不要求$h$和所有的元素都交换。这样定义的目的是为了把Lorentz boost之类的对称包括进来。
+\subsection{场论意义下的诺特定理}
+本节是2.4.2的一个缩水版的描述
+
+考虑单参数的对称，我们假设对称具有“逐点”的形式，例如平移$x\rightarrow x+\delta\omega$.
+我们引入一个non-rigid 版本的变换$x\rightarrow x+\delta\omega(x)$.
+则对于任意的$\Phi$, $\delta\omega(x)$为常数时$\delta S=0$,因此我们猜测$\delta S$作为$\delta\omega(x)$的线性泛函
+可以只依赖于$\partial_{\mu}\delta\omega(x)$,即具有如下形式:
+$$\delta S=-\int d^d x j^\mu(x;\Phi)\partial_{\mu}\delta\omega(x)$$.
+分部积分
+$$\delta S=\int d^d x \partial_{\mu}j^\mu(x;\Phi)\delta\omega(x)$$.
+当$\Phi$满足运动方程时$\delta S=0$，而$\delta\omega(x)$是自由的，因此$\partial_{\mu}j^\mu(x;\Phi)=0$.
+
+\subsection{量子化与量子的对称}
+给定如上的物理系统，一个量子化过程是指把$\Gamma(M)$提升为某个Hilbert空间上的算子的过程，满足：
+\[[\hat f,\hat g]=i\hbar\widehat{\{f,g\}}+O(\hbar^2)\].
+那么为了把经典的对称提升为量子对称，需要用诺特定理找到$f$再提升为$\hat f$.
+这时交换关系会被破坏（即$O(\hbar^2)$项），但我们可能找到一个弱化的条件(即所谓soft-breaking)。
+\[[\hat f,\hat g]=i\hbar\widehat{\{f,g\}}+c\]
+其中$c$是一个标量。
+\begin{remark}
+    对于我们关注的场景，即由坐标变换带来的对称，我们对soft-breaking给出另外的解释,
+    由Wald identity:
+    
+    $$[Q_a,\Phi]=-iG_a\Phi$$
+
+    由于$G_a$服从经典对称的交换关系，我们有$[[Q_a,Q_b],\Phi]=-iG_{[a,b]}\Phi$。因此$[Q_a,Q_b]=Q_{[a,b]}+c$.
+    记号的意义参考公式2.163
+\end{remark}
+\subsection{二维共形变换群，Witt algebra}
+直接写结论：
+记$z=x+yi$, 无穷小二维共形变换由$z\mapsto z+\epsilon f(z)$构成，$f$是一个全纯函数，有展开：
+$$f(z)=\sum_{n=-\infty}^\infty f_nz^n$$
+那么对于$\bar z=x-yi$, $\bar z\mapsto \bar z+\epsilon \bar f(\bar z)$, 其中$f(z)=\sum_{n=-\infty}^\infty \bar{f_n}z^{n}$。
+
+复化之后$z\mapsto z+\epsilon f(z)$,$\bar z\mapsto \bar z+\epsilon g(\bar z)$, $f$与$g$是两个独立的全纯函数。
+\begin{remark}[关于$z$,$\bar z$视为独立的变量]
+
+关于$z$,$\bar z$视为独立的变量，我们这里给出一个严格的模型：
+
+我们首先将$x$，$y$视为复数，记为$x_{\mathbb{C}}$,$y_{\mathbb{C}}$。例如对于经典场$\phi(x,y)$,
+将其解析延拓到$\mathbb{C}^2$上，成为$\phi(x_{\mathbb{C}},y_{\mathbb{C}})$.
+这时$z=x_{\mathbb{C}}+y_{\mathbb{C}}i,\,\bar z=x_{\mathbb{C}}-y_{\mathbb{C}}i$
+就是个纯粹的一对一线性变换了，经过如此处理$z$,$\bar z$就是个独立的变量了。
+\end{remark}
+因此，二维共形变换群由$z\mapsto z+\epsilon z^n,\bar z\mapsto \bar z$和
+$z\mapsto z,\bar z\mapsto \bar z+\epsilon \bar z^n$. 记为$l_n$,$\bar l_n$.
+满足Witt algebra关系：
+\begin{align*}
+    [l_n,l_m]&=(n-m)l_{m+n}\\
+    [\bar l_n,\bar l_m]&=(n-m)\bar l_{m+n}\\
+    [l_n,\bar l_m]&=0
+
+\end{align*}
+\subsection{Virasoro algebra}
+对 Witt algebra 做 central extension 可得 Virasoro algebra:
+\begin{align*}
+    [L_n,L_m]&=(n-m)L_{m+n}+\frac{c}{12}m(m^2-1)\delta_{m+n,0}\\
+    [\bar L_n,\bar L_m]&=(n-m)\bar L_{m+n}+\frac{c}{12}m(m^2-1)\delta_{m+n,0}\\
+    [L_n,\bar L_m]&=0
+\end{align*}
+\begin{definition}
+    一个2d QFT具有共性对称性当且仅当存在一组算符$L_n,\bar L_n$
+    满足以上的交换关系，且$L^{-1}=H+iL,\,\bar L^{-1}=H-iL $. 其中
+    $H,L$是Hamiltonion和动量算符
+\end{definition}
+\subsection{OPE与交换关系}
+如果强行使用泰勒展开，可能会写出以下的式子：
+$$\phi(z)\psi(w)=\phi(z)(\psi(z)+(z-w)\partial_z\psi(z)+...)=\phi(z)\psi(z)+(z-w)\phi(z)\partial_z\psi(z)+...$$
+这涉及到同一个形式级数在不同定义域展开的问题，
+一个严格的解释参考"Vertex algebras and algebraic curves"的Chapter3. 一个具体的例子见Section 2.3.1
+
+以及下面的计算会反复出现：
+\begin{theorem}["Vertex algebras and algebraic curves",proposition 3.3.1]
+    $$\phi(z)\psi(w)=\sum_{j=0}^{N-1}\frac{\gamma_j(w)}{(z-w)^{j+1}}+reg.$$
+    那么我们有$$[\phi(z),\psi(w)]=\sum_{j=0}^{N-1}\frac{1}{j!}\gamma_j(w)\partial_w^j(z-w)$$
+    ，反之亦然。
+
+    如果做展开$\phi(z)=\sum \phi_n z^{-n}$那么：
+$$[\phi_n,\psi_m]=\sum_k\binom{n}{m+n-k}(\gamma_{m+n})_k$$
+\end{theorem}
+\section{Chapter 6}
+\subsection{径向量子化}
+\subsubsection{为什么称为量子化}
+如上文所述，量子化是一个将经典观测量提升为算符的过程。作为比较，
+径向量子化和编时量子化的区别在于：
+考虑关联函数$\left\langle \phi_1(z_1)\dots\phi_n(z_n) \right\rangle$再不同的量子化之间是相等的。
+而对于不同的量子化，关联函数分别为
+$$\bra{0} \mathcal{R}(\phi_{1R}(z_1)\dots\phi_{nR}(z_n)) \ket{0}$$
+与
+$$\bra{0} \mathcal{T}(\phi_{1T}(z_1)\dots\phi_{nT}(z_n)) \ket{0}$$
+其中$\phi_{iR}$是径向量子化的算符，$\phi_{iT}$是编时量子化的算符，为了得到正确的关联函数，必须以各自正确的方式排列算符。
+\begin{remark}
+    笔者认为两种量子化得到的Hilbert空间无法互相比较。
+\end{remark}
+\subsubsection{为什么要进行径向量子化？}
+径向量子化的等时面是有界的，可以定义围道积分。
+\section{Chapter 7-8}
+\subsection{Virasoro algebra的表示}
+\subsubsection{引子:$SL_2$的表示}
+\subsection{为什么Minimal Model是唯一的？*}
+在Chapter 6中我们证明了，对于一个CFT，如果给定$c$,所有的$h_i$和结构常数$C_{ijk}$
+那么我们可以计算所有的相关函数，从而决定这个CFT.
+在本章我们将证明基于Fusion rule和associativity可以解出所有的$C_{ijk}$（up to normalization/sign）。
+
+首先我们从这张熟悉的图片开始。
+\begin{center}	
+{{image|CrossSymCFT.png}}
+\end{center}
+
+Say the linear relationship between those graphs with four legs are $F\begin{bmatrix}
+i&j \\
+l&m
+\end{bmatrix}_{p,q}$, then
+
+$$C_{ij}^pC_{lm}^p=\sum_q F\begin{bmatrix}
+i&j \\
+l&m
+\end{bmatrix}_{p,q}C_{im}^qC_{jl}^q$$
+
+The problem we care about is how to solve this overdetermined system, with normalization condition $C_{ii}^{0}=1$. So one could consider the case $i=j=k=l$, here only ${C_{ii}^p}^2$ is involved and it is a linear equation of them. If for $i$ the fusion number $N_{ii}^0=1$, which holds for all $i$ in  minimal model, the term $C_{ii}^{0}$ appears, so all structure constants like $C_{ii}^p$ are fixed, with some degeneracy assumption on $F$.
+
+Next consider $i=j\not=k=l$, then the left hand side of the equation is known and right hand side only involves ${C_{ij}^q}^2$, thus all structure constants are fixed.
+
+In this thesis "The Structure Constants of the Minimal Models" (https://researchers.ms.unimelb.edu.au/\%7Edridout\%40unimelb/students/Gerraty.MScThesis.pdf) by Benjamin Gerraty some examples are computed.
+\section{Chapter 9}
+\subsection{多值函数的围道积分}
+本章考虑的（被积分的）多值函数形如$f(w)=w^a(w-1)^b(w-z)^c$,其中$a,b,c$均为有理数。
+首先这样的函数可以单值地定义在$\mathbb{C}\setminus L$上，其中$L$是三条从$\{0,1,z\}$到无穷远的线，即所谓branch cut, 我们把这样的值称为主值，跨过branch cut
+时会改变一个相位.
+
+其次对于一个不经过这些奇点的路径$l:[0,1]\rightarrow \mathbb{C}$,我们可以定义一个路径上的连续函数$f|_{l}$, 定义方式如下：在起始点取主值，每次跨过branch cut
+乘以对应的相位使得取值连续。
+
+对于封闭的路径，如果我们要定义一个合法的围道积分，要求取值在起始点和终点相等，对于一般的$a,b,c$,这相当于$\{0,1,z\}$的环绕数都为$0$.
+
+当然也可以引入黎曼面的观点，叙述更简单一些: $f$的黎曼面为$\mathbb{C}\setminus\{0,1,z\}$的 universal cover，$\mathbb{C}\setminus\{0,1,z\}$的基本群为3-自由群$G=<a,b,c>$。
+由于单值群都是交换的， 我们可以把黎曼面模掉$G$的derived subgroup.一个 $\mathbb{C}$上的路径可以提升到
+黎曼面上，一个封闭的路径可以提升当且仅当deck transform在derived subgroup里，即环绕数为0.
+
+作为一个例子，考虑下面的contour：
+\begin{enumerate}
+    \item 不跨过任何branch cut，从0附近到1附近
+    \item 从上往下跨过1所在的branch cut，再从1附近返回0附近
+    \item 从上往下跨过0所在的branch cut，从0附近到1附近
+    \item 从下往上跨过1所在的branch cut，再从1附近返回0附近
+    \item 从下往上跨过0所在的branch cut，回到原点
+\end{enumerate}
+设从上往下跨过0相位改变$\theta_1$,从上往下跨过1相位改变$\theta_2$,那么围道积分等于
+$$(1-e^{i\theta_1}+e^{i(\theta_1+{\theta_2})}-e^{i\theta_2})\int_{0}^{1}fdz$$
+\section{Chapter 10}
+首先注意到：模不变性是一个公理，事实上等价于Weyl-anomaly free。我们可以构造出不满足模不变形的
+“合法的”共形场论：从VOA的角度，我们只需要fusion product封闭即可，
+最简单的例子就是Minimal Model只取$\phi_{(1,1)}\times\bar\phi_{(1,1)}$这个Virasoro module.
+
+本章的主题是考察模不变性会对CFT产生怎样的限制。

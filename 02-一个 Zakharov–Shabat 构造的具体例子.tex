@@ -1,0 +1,36 @@
+本文将尝试给出一个Zakharov–Shabat构造的具体例子，
+并验证其确实构造了一个可积系统。
+关于Zakharov–Shabat构造可以参考\cite{1}中对应部分。
+\section{例子}
+考虑最简单的情况，只在0处有一阶的pole。记$L=L_0+1/\lambda\cdot L_1$.
+假设$P=\lambda L^2$,计算可得
+$$M=(P(L))_{-}=1/\lambda\cdot L_1^2$$
+$$\frac{dL}{dt}=[L,M]=1/\lambda[L_0,L_1^2]$$
+
+即
+\begin{align*}
+\dot{L_0}&=0\\
+\dot{L_1}&=[L_0,L_1^2]
+\end{align*}
+因此$L_0$为常量，我们将它对角化：
+$$L_0=\begin{pmatrix}u& 0\\0& v\end{pmatrix}$$
+设
+$$L_1=\begin{pmatrix}a& b\\c& d\end{pmatrix}$$
+继续展开
+\begin{align*}
+\dot{a}&=0\\
+\dot{d}&=0\\
+\dot{b}&=(a+d)(u-v)b\\
+\dot{c}&=(a+d)(v-u)c
+\end{align*}
+
+最后变成一个等价于
+\begin{align*}
+\dot{x}&=x\\
+\dot{y}&=-y
+\end{align*}
+的微分方程。对应的辛形式是$dx\wedge dy$,哈密顿量$xy$。
+注意这和一般的Liouville可积系统不一样，后者通常假设哈密尔顿量在任意方向都是增长的（即对任意$\epsilon$, $\{H\le \epsilon\}$紧致）
+\begin{thebibliography}
+    \bibitem[1]{1}Babelon, O., Bernard, D. \& Talon, M. Introduction to Classical Integrable Systems. (Cambridge University Press,2003)
+\end{thebibliography}

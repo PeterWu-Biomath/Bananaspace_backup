@@ -1,0 +1,27 @@
+Let $\Sigma$ be a Riemann surface, choose $B$ a 3-dimensional manifold s.t. $\partial B=\Sigma$. For $f$ be a Lie-group valued function on $\Sigma$, we extend it on $B$, and the WZW action is defined as:
+$$S_\Sigma(f)=-\frac{ik}{4\pi}\int_{\Sigma}Tr(f^{-1}\partial f\wedge f^{-1}\bar\partial f)
+-\frac{ik}{12\pi}\int_{B}Tr(f^{-1}df\wedge f^{-1}df\wedge f^{-1}df)$$
+
+Polyakov-Wiegmann identity asserts that 
+$$S_\Sigma(fg)=S_\Sigma(f)+S_\Sigma(g)-\frac{ik}{2\pi}\int_{\Sigma}Tr(f^{-1}\partial f\wedge \bar\partial g g^{-1})$$
+
+Denote $S_0(f)=\int_{\Sigma}Tr(f^{-1}\partial f\wedge f^{-1}\bar\partial f)$ and $\Gamma(f)=\int_{B}Tr(f^{-1}df\wedge f^{-1}df\wedge f^{-1}df)$
+
+By Leibniz rule we have $(fg)^{-1}\partial(fg)=g^{-1}f^{-1}\partial fg+g^{-1}\partial g$ and with trace cyclic property we have: 
+\begin{align*}
+    S_0(fg)&=S_0(f)+S_0(g)+\int_{\Sigma}Tr(f^{-1}\partial f\wedge \bar\partial g g^{-1}+\partial g g^{-1}\wedge f^{-1}\bar \partial f)\\
+    \Gamma(fg)&=\Gamma(f)+\Gamma(g)+3\int_{B}Tr(f^{-1}df\wedge f^{-1}df\wedge dgg^{-1}+f^{-1}df\wedge dgg^{-1}\wedge dgg^{-1})
+\end{align*}
+
+So we need to show that 
+
+$$\int_{B}Tr(f^{-1}df\wedge f^{-1}df\wedge dgg^{-1}+f^{-1}df\wedge dgg^{-1}\wedge dgg^{-1})=\int_{\Sigma}Tr(-f^{-1}\partial f\wedge \bar\partial g g^{-1}+\partial g g^{-1}\wedge f^{-1}\bar \partial f)$$
+
+The right hand side equal to $-\int_{\Sigma}Tr(f^{-1}d f\wedge d g g^{-1})$ as terms like $\partial f \wedge \partial g$ are multiplicities of $dz\wedge dz$ thus vanish.
+
+Finally 
+\begin{align*}
+    d(Tr(f^{-1}d f\wedge d g g^{-1}))&=Tr(-f^{-1}d f\wedge f^{-1}d f\wedge d g g^{-1}-f^{-1}d f\wedge d g g^{-1} \wedge d g g^{-1})\\
+\end{align*}
+
+By Stokes fomular we completes the proof.

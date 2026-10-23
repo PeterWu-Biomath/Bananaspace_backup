@@ -1,0 +1,163 @@
+本文受江云峰报告（\url{https://www.koushare.com/live/details/11521}）的启发。
+\section{背景}
+关于 Bethe ansatz 的介绍可以参考文献\cite{Slavnov2018} ，对于我们关心的Bethe ansatz的完备性问题可以参考\cite{Hao:2013jqa}。
+
+简而言之，我们关心如下方程的解（即Bethe equation）：
+\[\big( \frac{\lambda_k+i/2}{\lambda_k-i/2}\big)^L=\prod_{j\not=k}\frac{\lambda_k-\lambda_j+i}{\lambda_k-\lambda_j-i}\quad(k=1,\dots,N)\]
+以及一些额外的条件：
+\begin{itemize}
+    \item 方程关于$\lambda_i$的置换对称，我们把通过置换得到的根视为同一组根。
+    \item $\lambda_i$之间互异。
+    \item 如果某个根中$\lambda_1=i/2$,一定有$\lambda_2=-i/2$，我们要求进一步满足
+    \[\prod_{k=3,\dots,N}\big (-\frac{\lambda_k+i/2}{\lambda_k-i/2}\big )^L=1\]。
+\end{itemize}
+假设$N<L/2$。如果Bethe ansatz 是完备的，那么解的个数等于$\binom{L}{N}-\binom{L}{N-1}$。我们的想法是，对于代数方程组，
+如果能正确定义根的multiplicity，那么根的个数可以由代数方程组的某些最高项决定，即BKK定理。
+而multiplicity和Bethe vector的维数相等。考虑下面的例子：
+\[(d^2/dx^2-u)f=0\]
+特征方程为$\lambda^2-t=0$。当$t\not=0$时, $\lambda=\pm\sqrt{t}$.
+每个根对应一个一维空间。当$t=0$时，$\lambda=0$的重数为$2$,对应了一个二维的解空间。
+
+作为一个例子，我们有如下的猜测：如果$(\lambda_1,\dots,\lambda_N)$是一个Bethe equation的解，其中$\lambda_1=\lambda_2$.
+如果这个解的重数为$3$，那么可以从这个根出发构造一个Bethe vector.
+\subsection{root at infinity}
+给定一个代数方程组，我们可以通过BKK定理计算出“预期”的解的个数。
+即如果代数方程组系数满足某个开条件，那么解的个数等于mixed volume.
+
+我们通过如下方式放松该条件，使得如果 $f_i=0$的zero locus intersecting transversally。
+可以通过加入"root at infinity" 使得BKK定理成立。
+对于n个未知数的方程，可以通过紧化$\mathbb{C}^n$，
+使得intersection theory成立. 即$f_i=0$的Zariski closure对应某个同调类。
+而预期的解的个数等于这些同调类的cup product。
+如果某个解恰好在紧化添加的部分，那么我们称这样的解为root at infinity。
+
+\section{$N=2$}
+记\[f(\lambda_1,\lambda_2)=(\lambda_1+i/2)^L(\lambda_1-\lambda_2-i)-(\lambda_1-i/2)^L(\lambda_1-\lambda_2+i)\]
+
+用$x,y$代替$\lambda_1,\lambda_2$。Bethe equation为：\[f(x,y)=0\\f(y,x)=0\]
+
+这里我们想办法应用BKK 定理。首先我们计算Newton polytope，具体方法就是把$f$展开。对于$L$偶数，$f(x,y)$的Newton polytope是$(0,0),(0,L),(1,L-1),(1,1)$的闭包; $L$为奇数时，$f(x,y)$的Newton polytope是$(0,0),(0,L),(1,L-1),(0,1)$的闭包。
+$f(y,x)$的Newton polytope是$x=y$的镜像对称。经过计算Mixed Volume等于$L^2$。因此我们共有$L^2$组解。
+
+考虑$x=y$的解的个数。这相当于方程组$f(x,y)=0,\,x=y$的解。不难验证$f(x,y)$是$L$次多项式，因此有$L$组解。因此$x\not=y$解的个数为$(L^2-L)/2$.
+
+接下来处理$x=i/2,\,y=-i/2$的情况，我们宣称这个解自带了$L$的重数，这个重数是方程推导时引入的。而真正Bethe vector的维数等于这个解的重数减$L$
+（注意这个猜测事实上与前述条件不同）,因此解的个数与前面猜想所预言的个数一致。
+
+\subsection{根$(i/2,-i/2)$的重数}
+根的重数定义为$dim_{\mathbb{C}}(\mathcal{O}_p/\mathcal{I})$,记号的具体意义参考GTM52.做平移$x\to x-i/2,\,y\to y+i/2$.
+方程组变为
+\[
+    f_1(x,y)=(x+i)^{L}(x-y)-x^{L}(x-y+2i)\\
+    f_2(x,y)=y^{L}(y-x-2i)-(y-i)^{L}(y-x)
+\]
+对于我们关注的情况重数等于$\mathbb{C}[[x,y]]/<f_1,f_2>$的维数。多项式$f_1$对于$y$是一次的，设$y_0$是$f(x,y_0)=0$的根，计算可得
+$y_0\in\mathbb{C}[[x]],\,y_0=x-2i^{-L+1}x^L+o(x^L)$.做变量代换$y_{new}= y-y_0$, $f_1=(x^L-(x+i)^L)y_{new}$.
+注意在局部环中$x^L-(x+i)^L$可逆，因此$f_1$生成的理想就是$y_{new}$生成的理想.
+
+此时我们有$\mathbb{C}[[x,y]]/<f_1,f_2>=\mathbb{C}[[x]]/<f_2(x,y_0)>$，
+我们先计算$f_2(x,y_0) \mod x^{L+1}=-2i(1-(-1)^L)x^L$.因此$L$为奇数时重数为$L$,我们接下来计算$L$为偶数时的重数，
+$f_2(x,y_0) \mod x^{L+2}$(TBD), 因此重数为$L+1$. 这与我们的预测一致：根$(i/2,-i/2)$的Bethe vector维数与重数相差$L$.
+
+\section{$N=3$}
+这一节将会详细解释$N=3$时我们遇到的困难。我们使用如下修改版的容斥定理：
+\begin{theorem}
+
+有限集$S\subset\mathbb{R}^3$(设坐标为$x,y,z$). 记号$S_{x=y}$表示$\{(x,y,z)\in S| x=y\}$。那么$S$中$x,y,z$互不相等的元素个数为：
+\[\#S-\#S_{x=y}-\#S_{y=z}-\#S_{x=z}+2\#S_{x=y=z}\]
+
+\end{theorem}
+$N>3$的情况参考(\url{https://math.stackexchange.com/questions/3659385/})
+
+定义
+\[
+    f(x,y,z)=((x+i/2)^L(x-y-i)(x-z-i)-(x-i/2)^L(x-y+i)(x-z+i))/i
+\]
+注意到$f(x,y,z)$对于$y,z$对称，Bethe equation 为 $f(x,y,z)=f(y,z,x)=f(z,x,y)=0$. 
+
+$f$最高次项为$(L-4)x^{L+1}-(L-2)(y+z)x^L+Lyzx^{L-1}$.
+其 Newton polytope 顶点为：$(1,0,0),
+                (0,1,0),
+                (0,0,1),
+                (1,1,1),
+                (1,1,L-1),
+                (1,0,L),
+                (0,1,L),
+                (0,0,L+1)$. 
+因此 $f(x,y,z)=f(y,z,x)=f(z,x,y)=0$ 有 $(L+1)^3$个解，$f(x,y,z)=f(z,x,y)=x-y=0$有 $(L+1)^2$个解， $f(x,y,z)=x-z=x-y=0$有 $L+1$个解.
+带入前述公式，共有$\binom{L+1}{3}$组$x,y,z$互异的解。
+
+\subsection{根$(i/2,-i/2，z)$的重数}
+带入$x=i/2,-y=i/2$ 我们可以得到 $f(x,y,z)=f(y,z,x)=0$.
+$f(z,x,y)=(z-i/2)(z+i/2)(z^{L-1}+\dots)$。即除去$z=\pm i/2$,
+剩下$L-1$个根。猜测每个根多余的重数为$L$,因此解的数目应为 $\binom{L+1}{3}-L(L-1)=\binom{L}{3}-\binom{L}{2}$。与预期一致。
+
+\begin{remark}
+    在这里引入了一些假设使得上述的论述成立，以下加以整理：
+    \begin{itemize}
+        \item BKK定理成立需要方程系数满足一些开条件，
+        我们知道事实上 Bethe equation 不满足这些条件，例如对于$L=6,\,N=3$, 假设$x=y=z$, $f=3x^5-5x^3/2+3x/16$.
+        而BKK定理预测解的个数为有$7$。但我们猜测以上的论证依然成立，因为root at infinity都在某个$\lambda_i=\lambda_j$这个超平面上，因此不会对结果产生影响。
+        \item 解$(-i/2,i/2,i/2)$在$f(x,y,z)=f(y,z,x)=f(z,x,y)=0$和$f(x,y,z)=f(y,z,x)=z-y=0$这两组方程的重数相等。
+    \end{itemize}
+\end{remark}
+
+\section{$N\ge 4$}
+对于$N=4$,首先我们假设解为 $(x,y,z,w)$. 根据BKK
+定理，解的个数为$\binom{L+2}{4}$. 基于一些数值结果
+我们猜测，形如$(-i/2,i/2,z,w),\,z,w\not=\pm\, i/2$的
+解的个数为$\binom{L-1}{2}$. 而$(-i/2,i/2,i/2,w),\,w\not=\pm\, i/2$
+不会贡献multiplicity.最后$(-i/2,-i/2,i/2,i/2)$的multiplicity为$\binom{L}{2}$.
+
+最后解的个数为
+\[\binom{L+2}{4}-\binom{L-1}{2}*L-\binom{L}{2}=\binom{L}{4}-\binom{L}{3}\]
+与预期一致。
+
+对于一般的$L,N$, 定义
+$S(L,N)=\binom{L}{N}-\binom{L}{N-1}$. 我们预期可以通过
+以下方式得到解的个数：设满足$\lambda_1=\dots=\lambda_k=-i/2$,
+$\lambda_{k+1}=\dots=\lambda_{2k}=-i/2$, $\lambda_{2k+1},\dots,\lambda_{L}\not=\pm i/2$.
+解的个数为$B(k;L,N)$, multiplicity为$M(k;L,N)$.那么按照预期
+\[S(L,N)=\binom{L+N-2}{N}-\sum_{k=1}^{L/2}B(k;L,N)*M(k;L,N)\]
+
+基于上面的结果我们可能进行如下的猜测：$B(k;L,N)=\binom{L-1}{N-2k}$,$M(k;L,N)=\binom{L}{k}$
+但这在$N=6$时已经不成立。
+
+\section{策略}
+我们对证明策略进行总结：对于$N,L\in \mathbb{Z}^{+},\,L\ge 2N$. 设：
+\[f(\lambda_1,\dots,\lambda_N)={(\lambda_1+i/2)}^L\prod_{j\not=1}{(\lambda_1-\lambda_j+i)}-
+{(\lambda_k-i/2)}^L\prod_{j\not=1}{(\lambda_1-\lambda_j-i)}\]
+多项式$f(\lambda_1,\dots,\lambda_N)$关于后面$N-1$个变量对称, Bethe equation可以写成：
+\[
+    f(\lambda_1,\dots,\lambda_N)=0\\
+    f(\lambda_2,\lambda_1,\dots,\lambda_N)=0\\
+    \dots\\
+    f(\lambda_N,\lambda_1,\dots,\lambda_{N-1})=0
+\]
+
+对于每一个根$\bm{\lambda}$, 我们可以定义一个Non-physical multiplicity. 
+使得这个根对应的 Bethe vector 维数等于在Bethe equation中的multiplicity减去Non-physical multiplicity。
+
+
+== 参考文献 ==
+*{{@article|Hao:2013jqa,
+    author = Hao, Wenrui and Nepomechie, Rafael I. and Sommese, Andrew J.,
+    title = {Completeness of solutions of Bethe's equations},
+    eprint = 1308.4645,
+    archivePrefix = arXiv,
+    primaryClass = math-ph,
+    reportNumber = UMTG-277,
+    doi = 10.1103/PhysRevE.88.052113,
+    journal = Phys. Rev. E,
+    volume = 88,
+    number = 5,
+    pages = 052113,
+    year = 2013
+}}
+
+*{{@article|Slavnov2018,
+  title={Algebraic Bethe ansatz},
+  author={Nikita Andreevich Slavnov},
+  year={2018},
+  url={https://api.semanticscholar.org/CorpusID:119586516}
+}}

@@ -1,0 +1,45 @@
+\newcommand{\vac}{|0\rangle}
+
+这个笔记基本上基于 Frenkel \& Ben-Zvi 的 Vertex algebras and algebraic curves. 
+\section{Chapter 1}
+一些关于形式级数的记号：\[f\in \mathbb{C}[[z^{\pm}]]\iff f=\sum_{n\in\mathbb{Z}}f_nz^n\]
+\[f\in \mathbb{C}[z,z^{-1}]\iff f=\sum_{n_1\le n\le n_2}f_nz^n\]
+\[f\in \mathbb{C}((z))\iff f=\sum_{n\ge n_0}f_nz^n\]
+注意第三个是 (formal) Laurent series，第二个是 Laurent polynomial。
+\[f\in \mathbb{C}((z))((w))\iff f=\sum_{n\ge n_0}\sum_{m\ge m_n}f_{nm} z^m w^n\]
+这里$m_n$可以没有下界，因此 $\mathbb{C}((z))((w))$ 和 $\mathbb{C}((w))((z))$ 不同构。
+\subsection{VOA的定义}
+简单来说一个VOA就是一个Virasoro module，配上一个乘法(OPE)的结构。比如一个$p,p^{\prime}$
+的minimal model，单一个$r,s$给出一个Virasoro module，这个module自己不构成一个VOA。做OPE之后生成所有的$r,s$才是一个VOA.
+
+这里直接抄书：
+\begin{definition}
+    A {\em vertex algebra} is a collection of data:
+
+\begin{enumerate}
+\item[$\bullet$] {\em space of states}, a $\Z_+$--graded vector
+space $V=\oplus_{n=0}^\infty{V_n}$, with $\operatorname{dim}(V_n)<\infty$;
+\item[$\bullet$] {\em vacuum vector} $\vac\in V_0$;
+\item[$\bullet$] {\em shift operator} $T:V\to V$ of
+degree one;
+\item[$\bullet$] {\em vertex operation}, a linear map $Y(\cdot,z):V\to
+\operatorname{End} V[[z,z^{-1}]]$ taking each $A\in V_n$ to a field of conformal
+dimension $n$.
+\end{enumerate}
+
+These data are subject to the following axioms:
+\begin{enumerate}
+\item[$\bullet$] {\em (vacuum axiom)}
+$Y(\vac,z)=\operatorname{Id}_V$. Furthermore, for any $A\in V$ we have
+ $Y(A,z)\vac\in A + zV[[z]]$ (i.e., $Y(A,z)\vac$ has a
+well--defined value at $z=0$, which is equal to $A$).
+\item[$\bullet$] {\em (translation axiom)} For any $A\in V$, 
+$[T,Y(A,z)]=\partial_z Y(A,z)$ and $T\vac=0$.
+\item[$\bullet$] {\em (locality axiom)} All fields $Y(A,z)$ are
+mutually local with each other.
+\end{enumerate} 
+\end{definition}
+Field 条件: 对于 $v\in V$, $A_n v=0$ for $n$ large enough.
+
+交换算子代数：所有 $Y(A,z)$ 彼此交换, 等价于 $Y(A,z)$ 在 $z=0$ 处正规。
+等价于带导子的交换代数（可能要一些完备性条件，不然$exp(zT)$没法定义）。

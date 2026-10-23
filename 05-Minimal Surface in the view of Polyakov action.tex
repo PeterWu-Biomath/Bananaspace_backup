@@ -1,0 +1,88 @@
+\subsection*{1. Polyakov action and classical equivalence}
+At first one could write Nambu-Goto action Polyakov action for a bosonic string in a flat $D$-dimensional Euclidean target space.
+\begin{equation}
+S_P = -\frac{T}{2} \int d^2\sigma\,\sqrt{\det \partial_a X^\mu \partial_b X_\mu}, \qquad \mu=1,\dots,D,
+\end{equation}
+
+The Polyakov action is
+\begin{equation}
+S_P = -\frac{T}{2} \int d^2\sigma\,\sqrt{h}\,h^{ab}\,\partial_a X^\mu \partial_b X_\mu, \qquad \mu=1,\dots,D,
+\end{equation}
+with worldsheet metric $h_{ab}$ and tension $T$. 
+
+To see why varies only $h_{ab}$ could reproduce the Nambu-Goto action, let's temporarily write
+$\partial_a X^\mu \partial_b X_\mu$ as $M_{ab}$, so the problem is maximizing 
+
+\[\sqrt{h}\,h^{ab}\,M_{ab}\].  
+
+which can be easily prove that the max value is $\sqrt{\det M_{ab}}$ by diagnalizing $M_{ab}$.
+
+Varying $h_{ab}$ gives the stress-energy tensor constraint $T_{ab}=0$, and eliminating $h_{ab}$ via its equation of motion reproduces the Nambu–Goto (area) action. Thus, classically, $S_P$ describes minimal surfaces.
+
+\subsection*{2. Conformal gauge}
+Using 2D diffeomorphism and Weyl invariance we choose \textbf{conformal gauge} $h_{ab}=e^{2\phi}\delta_{ab}$. In Euclidean worldsheet coordinates $(\tau,\sigma)$ (or complex coordinates $z=\tau+i\sigma$, $\bar{z}=\tau-i\sigma$) the action becomes
+\begin{equation}
+S = \frac{1}{2} \int d^2z \;\partial X^\mu \bar{\partial} X_\mu, \qquad \text{with } \partial = \partial_z,\; \bar{\partial} = \partial_{\bar{z}},
+\end{equation}
+where we have absorbed $T$ into the field normalization for simplicity (or set $T=1/\pi$). The equations of motion are $\partial\bar{\partial}X^\mu=0$, so each $X^\mu$ is a \textbf{harmonic function} on the worldsheet.
+
+\subsection*{3. Virasoro constraints}
+Gauge fixing leaves residual constraints $T_{ab}=0$. In complex coordinates they reduce to
+\begin{align}
+T_{zz} &\equiv (\partial X)^2 = 0, \label{eq:Tzz}\\
+T_{\bar{z}\bar{z}} &\equiv (\bar{\partial} X)^2 = 0. \label{eq:Tzbz}
+\end{align}
+These are the \textbf{Virasoro constraints}, enforcing that the worldsheet coordinates are isothermal (conformal) on the induced metric.
+
+\subsection*{4. Solving the constraints in $\mathbb{R}^3$}
+For a minimal surface in $\mathbb{R}^3$, we define the holomorphic differential
+\[
+\phi_i(z) = \partial X_i(z,\bar{z}), \qquad i=1,2,3.
+\]
+Each $\phi_i$ is holomorphic because $\partial\bar{\partial}X_i=0$. Equation (\ref{eq:Tzz}) becomes the complex constraint
+\begin{equation}
+\phi_1^2 + \phi_2^2 + \phi_3^2 = 0. \label{eq:constraint}
+\end{equation}
+This is a single complex equation for three holomorphic functions.
+
+\subsection*{5. Weierstrass–Enneper parametrisation}
+Recall the primary school equality $\sin^2\theta+\cos^2\theta=1$ and $\sin\theta=\frac{2\tan(\theta/2)}{\tan(\theta/2)^2+1}$, $\cos\theta=\frac{\tan(\theta/2)^2-1}{\tan(\theta/2)^2+1}$.
+So we can reparameterize solution of (\ref{eq:constraint}) by two holomorphic functions $f(z)$ and $g(z)$ (with $f$ holomorphic, $g$ meromorphic, and $f$ having a zero of order $2m$ wherever $g$ has a pole of order $m$). The components are
+\begin{equation}
+\boxed{
+\phi_1 = \frac{1}{2}\,f\,(1-g^2), \qquad
+\phi_2 = \frac{i}{2}\,f\,(1+g^2), \qquad
+\phi_3 = f\,g.
+}\label{eq:WE}
+\end{equation}
+Indeed,
+\[
+\phi_1^2+\phi_2^2+\phi_3^2 = \frac{f^2}{4}\big[(1-g^2)^2 - (1+g^2)^2\big] + f^2g^2 = -f^2g^2 + f^2g^2 = 0.
+\]
+
+The embedding $X_i(z,\bar{z})$ is recovered by integration (taking the real part for a real surface):
+\begin{equation}
+X_i(z,\bar{z}) = \operatorname{Re} \int \phi_i(z)\,dz.
+\end{equation}
+The integral is path independent (up to possible periods) because $\phi_i$ is holomorphic. The resulting surface automatically satisfies both the harmonic equation and the Virasoro constraints, hence is a \textbf{minimal surface}.
+\subsection*{6. Bernstein's Theorem} 
+\begin{theorem}Let $u(x,y)$ be a $C^2$ solution of the minimal surface equation on the whole plane $\mathbb{R}^2$. Then $u(x,y)$ is a linear function, i.e. its graph is a plane.
+\end{theorem}
+\begin{proof}
+A minimal graph $X(x,y) = (x, y, u(x,y))$ can be re‑parametrised isothermally. The Weierstrass–Enneper representation then provides two holomorphic data functions $f(z)$ and $g(z)$ (with $z = x+iy$) that generate the surface.
+
+For a graph over the entire $(x,y)$-plane, the Gauss map is one‑to‑one onto a subset of the upper hemisphere (or lower, depending on orientation). Stereographic projection of the unit normal gives the holomorphic function $g(z)$, which maps the plane $\mathbb{C}$ into the unit disk $\mathbb{D}$ (or its complement). More precisely, the gradient of $u$ is bounded away from infinity because the normal never becomes horizontal—otherwise the graph would have a vertical tangent. Thus the image of $g$ omits an open set of the Riemann sphere.
+
+Since $g(z)$ is meromorphic and its image omits at least two points (it avoids a hemisphere), Picard's little theorem forces $g(z)$ to be constant. (One can also argue more simply: $g$ is a bounded entire function, hence constant by Liouville's theorem.)
+
+With $g(z) \equiv c$, the Weierstrass–Enneper differential becomes
+\[
+\phi_1 = \frac{f}{2}(1-c^2),\quad \phi_2 = \frac{if}{2}(1+c^2),\quad \phi_3 = f c.
+\]
+Integrating and taking real parts gives
+\[
+X_1 + iX_2 = \frac{1}{2}(1-c^2)\int f(z)\,dz + \frac{i}{2}(1+c^2)\int f(z)\,dz + \text{const.}
+\]
+But for the graph parametrisation we need $X_1 = x$, $X_2 = y$ (up to a complex reparametrisation). This forces $f(z)$ to be a real constant (or to produce a linear function), which in turn makes $u(x,y)$ linear. 
+
+A standard form of the proof: using the Weierstrass data, one shows that if the surface is an entire graph, then $|g| < 1$ everywhere (the normal points consistently into the upper half-space). $g$ is then a bounded holomorphic function, hence constant. A constant $g$ gives $\phi_3/\phi_1$ and $\phi_3/\phi_2$ constant, implying the normal is fixed — the surface is a plane.
